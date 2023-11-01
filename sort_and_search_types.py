@@ -28,7 +28,8 @@ def quicksort(list, start=0, end=None):
   quicksort(list, start, ltp - 1)
   quicksort(list, ltp + 1, end)
 
-# Modified binary search algorithm, built to return a sublist of elements that start with a certain index
+# Modified binary search algorithm, built to return a sublist of elements that start with a certain substring, 
+# alongside the first substring's index to optimize the hashmap retrieval process
 def binary_search(sorted_list, target):
   left_pointer = 0
   right_pointer = len(sorted_list)
@@ -51,13 +52,13 @@ def binary_search(sorted_list, target):
   list_end = len(sorted_list) - 1
   if not mid_val.startswith(target):
     if mid_idx == list_end:
-      return (None, [])
+      return (None, []) # not found in case the "middle index" is already the end
     mid_idx += 1
     mid_val = sorted_list[mid_idx]
     if not mid_val.startswith(target):
       return (None, [])
   if mid_idx == list_end:
-    return (mid_idx, [mid_val])
+    return (mid_idx, [mid_val]) # found in case the "middle index" is already the end
   
   # get remaining values that start with the target
   end_idx = mid_idx + 1

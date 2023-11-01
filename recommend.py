@@ -25,12 +25,18 @@ def terminal_clear():
 # Sort types using a quicksort algorithm. This is to optimize searches.
 quicksort(types)
 
+# Places the elements in a custom HashMap.
 restaurants = HashMap(len(types))
+
+# Pops the restaurant data into the HashMap to reduce space complexity.
+# Uses the Binary Search function as a hash, and the indexes from that function as hash codes. 
+# This is to ensure that the list of elements at a type index can always be retrieved in O(1) time.
 
 while len(restaurant_data) > 0:
   r = restaurant_data.pop()
   restaurants.assign(r[0], Restaurant(r[1:]))
 
+# cake ascii art
 cake = '''
                 *                
   *             *             *
@@ -51,6 +57,7 @@ _________________________________
 terminal_clear()
 print(cake)
 
+# function to simplify the process of asking a yes or no question
 def yes_to(question):
   inpit = input(question + " Enter 'y' for yes and 'n' for no\n").lower()
   if inpit == 'y':
@@ -62,6 +69,7 @@ def yes_to(question):
     yes_to(question)
 
 while True:
+  # \n is used throughout to create a smooth, visually pleasing look for the program.
   print("\nWhat type of food would you like to eat?")
   print("Type the beginning of that food type and press enter to see if it's here.")
   food = input("").lower()
